@@ -1,0 +1,39 @@
+Answer questions marked as "QS"
+
+QS1.1:
+
+I used a stack to implement DFS.
+We do this to take advantage of LIFO, which enables us to always view a node just as soon as we push it.
+This property makes it so that we can keep expanding each state, descending further into the graph until one of the states we expand is the goal.
+
+
+QS1.2:
+
+The exploration is about what I expect.
+Pacman doesn't visit all of the explored nodes, especially the ones that are in deadends. 
+This actually reveals an interesting property of the searches we are doing- Pacman shouldn't ever have to backtrack if there is a path to the node.
+Notably, Pacman has access to the entire state of the world, and doesn't begin walking until the plan is finished. Hence he doesn't ever make a mistake like that.
+Also, some paths on the way to the goal are never explored. Even though none of them lead to the goal, I can imagine that its possible for a path to be unexplored that actually leads to a faster solution, since our algorithm will return the first path to the goal it finds.
+
+QS2.1:
+
+We use the queue to implement BFS.
+This is so that we can take advantage of FIFO, which enables us to check siblings of nodes before their children.
+
+QS3.1:
+
+
+
+QS4.1:
+
+
+QS5.1:
+
+
+QS5.2:
+
+
+QS6.1:
+
+
+QS7.1:
