@@ -163,7 +163,33 @@ def aStarSearch(problem: SearchProblem, heuristic=nullHeuristic):
     """
     Implements A* using a priority queue for the frontier.
     """
-    util.raiseNotDefined()
+    open = util.PriorityQueue()  
+    closed = {}  
+    
+    start_state = problem.getStartState()
+    open.push((start_state, [], 0), heuristic(start_state, problem))  
+    
+    while not open.isEmpty():
+        curr_state, path, g_cost = open.pop()  
+        
+        if curr_state in closed and closed[curr_state] <= g_cost:
+            continue  
+        
+        closed[curr_state] = g_cost  
+
+        if problem.isGoalState(curr_state):
+            return path  
+
+        for successor, action, step_cost in problem.getSuccessors(curr_state):
+            new_path = path + [action]
+            new_g_cost = g_cost + step_cost
+            # if the new g cost is less than a g-cost we already calculated for this successor, push it onto open. 
+            # if the successor hasn't been seen before, the default value is inf, which will always cause the successor to be pushed onto open.
+            if new_g_cost < closed.get(successor, float("inf")):
+                new_f_cost = new_g_cost + heuristic(successor, problem)
+                open.push((successor, new_path, new_g_cost), new_f_cost)  
+    
+    return []
 
 # Abbreviations
 bfs = breadthFirstSearch
